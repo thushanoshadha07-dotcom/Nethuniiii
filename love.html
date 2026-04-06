@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nethuniiii ❤️</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 10%;
+  font-size: 38px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+#slideshow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px;
+  height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px pink;
+  display: none;
+}
+
+#slideshow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.message {
+  position: absolute;
+  font-size: 20px;
+  color: pink;
+  animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+#startBtn {
+  padding: 15px 25px;
+  font-size: 18px;
+  background: pink;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#finalMessage {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  font-size: 24px;
+  display: none;
+  animation: fadeIn 3s ease-in-out;
+}
+</style>
+</head>
+<body>
+
+<button id="startBtn" onclick="startSurprise()">Tap here ❤️</button>
+
+<h1 id="mainText" style="display:none;">Hi Nethuniiii ❤️</h1>
+
+<div id="slideshow">
+  <img id="slide" src="photo1.jpg">
+</div>
+
+<div id="finalMessage">Will you stay with me forever? ❤️</div>
+
+<script>
+const messages = [
+  "I love youuuuu ❤️",
+  "You are my hapinesss 💕",
+  "I love yoo prarthanaa ❤️",
+  "Ummaah 😘",
+  "I love you foreverrrr ❤️",
+  "Nethunii patiyaaa 💖",
+  "I love you ❤️",
+  "Thank you for coming into my life 💫",
+  "I will never leave you ❤️"
+];
+
+const photos = [
+  "photo1.jpg",
+  "photo2.jpg",
+  "photo3.jpg",
+  "photo4.jpg",
+];
+
+let index = 0;
+
+function createFloatingText() {
+  const msg = document.createElement("div");
+  msg.className = "message";
+  msg.innerText = messages[Math.floor(Math.random() * messages.length)];
+  msg.style.left = Math.random() * 100 + "vw";
+  msg.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(msg);
+
+  setTimeout(() => msg.remove(), 10000);
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+
+function startSlideshow() {
+  const slide = document.getElementById("slide");
+  setInterval(() => {
+    index = (index + 1) % photos.length;
+    slide.src = photos[index];
+  }, 2500);
+}
+
+function startSurprise() {
+  document.getElementById("startBtn").style.display = "none";
+  document.getElementById("mainText").style.display = "block";
+  document.getElementById("slideshow").style.display = "block";
+
+  setInterval(createFloatingText, 800);
+  setInterval(createHeart, 300);
+
+  startSlideshow();
+
+  setTimeout(() => {
+    document.getElementById("finalMessage").style.display = "block";
+  }, 10000);
+}
+</script>
+
+</body>
+</html>
